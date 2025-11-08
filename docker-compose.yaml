@@ -1,5 +1,5 @@
 services:
- whoami-demo:
+ whoami:
   image: "traefik/whoami"
   container_name: "${CONTAINER_NAME}"
   labels:
@@ -17,8 +17,8 @@ services:
     - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
     - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
   networks:
-    - ${NETWORK_NAME}
+    - web
 
 networks:
-  ${NETWORK_NAME}:
+  web:
     external: true
