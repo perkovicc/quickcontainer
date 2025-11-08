@@ -18,7 +18,7 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    sh 'docker-compose build'
+                    sh 'docker compose build'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Run Containers') {
             steps {
                 script {
-                    sh 'docker-compose up -d'
+                    sh 'docker compose up -d'
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Example: run tests inside container
-                    sh 'docker-compose exec web pytest tests/'
+                    sh 'docker compose exec web pytest tests/'
                 }
             }
         }
@@ -43,7 +43,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    sh 'docker-compose down'
+                    sh 'docker compose down'
                 }
             }
         }
@@ -52,7 +52,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline complete. Cleaning up...'
-            sh 'docker-compose down -v'
+            sh 'docker compose down -v'
         }
     }
 }
